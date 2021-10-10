@@ -1,0 +1,11 @@
+#Pingtest
+---
+hosts: all
+gather_facts: false
+tasks:
+  - name: Ping Hosts
+    ping:
+ 
+  
+
+...
