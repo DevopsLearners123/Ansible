@@ -1,0 +1,14 @@
+---
+- name: Gather facts of ubuntu host
+  hosts: ubuntu
+  become: true
+  # remote_user: root
+  # gather_facts: false
+  tasks: 
+  #  - name: Gather facts of centos host
+  #    setup:
+    - name: debug output
+      debug: 
+        msg: "{{ ansible_facts.machine_id }}"
+  
+...

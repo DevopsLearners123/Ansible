@@ -1,11 +1,14 @@
 #Pingtest
 ---
-hosts: all
-gather_facts: false
-tasks:
-  - name: Ping Hosts
-    ping:
- 
+- name: pingtest
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Ping Hosts
+      ping:
+      register: pingvar
+
   
 
 ...

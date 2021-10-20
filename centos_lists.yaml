@@ -1,0 +1,20 @@
+---
+- name: Play 1 to test list of variables
+  hosts: centos
+  become: true
+  gather_facts: False
+  vars:
+    Students:
+      - Anirudh
+      - Jagu
+      - Purnima
+  tasks:
+    - name: Print Students Names
+      debug:
+        msg: "{{ Students }}"
+
+    - name: Print First Students Names
+      debug:
+        msg: First student name is {{ Students.0 }}
+
+...

@@ -1,0 +1,12 @@
+---
+ MSc:
+   students:
+     name: Anirudh
+     age: 29
+ MA:
+   Students:
+     name: Jagu
+     age: 27
+
+
+...

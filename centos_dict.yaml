@@ -1,0 +1,30 @@
+---
+- name: Gather facts of centos host
+  hosts: centos
+  become: true
+  # remote_user: root
+  # gather_facts: false
+  tasks: 
+  #  - name: Gather facts of centos host
+  #    setup:
+    - name: debug output
+      debug: 
+        msg: "{{ ansible_facts.machine_id }}"
+  
+
+- name: Check dictionaries functionality
+  hosts: centos
+  vars_files:
+    - external_vars.yaml
+   # - external_vars1.yaml
+  tasks: 
+    - name: Show MSc Dict value
+      debug:
+        msg: Name of student is {{ MSc.students.name }} & Age of student is {{ MSc.students.age }}
+    - name: Show MA Dict Value
+      debug:
+        msg: Name of Student is {{ MA.Students.name }} & Age of student is {{ MA.Students.age }} 
+
+
+...
+
