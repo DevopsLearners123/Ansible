@@ -1,0 +1,15 @@
+---
+- hosts: centos,ubuntu
+  gather_facts: false
+  tasks:
+    - name: copy /tmp/centos_facts.txt to hosts
+      copy:
+        src: /tmp/centos_facts.txt
+        dest: /tmp/centos_facts1.txt
+    - name: Verify packages
+      command: "ls -ld /tmp/centos_facts1.txt"
+      register: op
+    - debug:
+        msg: "{{ op.stdout  }}"
+
+...

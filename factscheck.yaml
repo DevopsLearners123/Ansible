@@ -1,0 +1,21 @@
+---
+- hosts: centos
+  gather_facts: Yes
+  vars_prompt:
+    - name: var1
+      prompt: Enter variable 1
+      private: no
+      default: var2
+  vars:
+    testvar2: "{{ ansible_cmdline.BOOT_IMAGE }}"
+  tasks:
+    - name: Print IPV4 of {{ testvar2 }} is 
+      debug:
+        msg: "{{ ansible_all_ipv4_addresses.1 }}"
+    - name: Refresh facts
+      setup:
+    - name: print hostvars variable
+      debug:
+        msg: "{{ ansible_user }}"
+
+...
