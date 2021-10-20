@@ -2,17 +2,19 @@
 - hosts: ubuntu
   become: true
   gather_facts: False
+  vars:
+    NFSUser: NFS
   vars_prompt:
     - name: Stud_Name
       prompt: What's your name ??
       private: no
-      confirm: yes
+      confirm: no
     - name: Passwd
       prompt: Enter your passwd
   tasks:
     - name: Print Vars_Prompt values
       debug:
-        msg: "{{ Stud_Name }}"
+        msg: "{{ Stud_Name | default('NFSUser') }}"
 
 
 ...

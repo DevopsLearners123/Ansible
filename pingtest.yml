@@ -4,10 +4,15 @@
   hosts: all
   gather_facts: false
   become: true
+  vars: 
+    admin: Infant
   tasks:
     - name: Ping Hosts
       ping:
       register: pingvar
+    - name: print default msg value
+      debug:
+        msg: "{{ admin | default('Anirudh') }}"
 
   
 
