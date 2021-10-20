@@ -1,0 +1,21 @@
+---
+- hosts: centos,ubuntu
+  become: true
+  gather_facts: True
+  tasks:
+    - name: CentOS
+      shell: "cat /etc/os-release"
+      register: centosrel
+      when: ansible_distribution == "CentOS"
+    - name: Display Centos-release
+      debug:
+        msg: "{{ centosrel.stdout_lines.0 }}"
+      when: ansible_distribution == "CentOS"
+    - name: Display Ubuntu OS-release
+      shell: "cat /etc/os-release"
+      register: ubunturel
+      when: ansible_distribution == "Ubuntu"  
+    - name: Display Ubuntu-release
+      debug:
+        msg: "{{ ubunturel.stdout_lines.0 }}"
+      when: ansible_distribution == "Ubuntu"

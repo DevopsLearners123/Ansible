@@ -3,20 +3,28 @@
   become: true
   gather_facts: true
   tasks:
-  #  - name: create facts.d directory on ubuntu & centos hosts
-  #    file:
-  #      path: /etc/ansible/facts.d
-  #      state: directory
-  #      owner: root
-  #      mode: '0744'
-  #  - name: copy facts file to facts.d
-  #    copy:
-  #      src: /etc/ansible/facts.d/date.fact
-  #      dest: /etc/ansible/facts.d/date.fact
-  #      mode: preserve
+    - name: create facts.d directory on ubuntu & centos hosts
+      file:
+        path: /etc/ansible/facts.d
+        state: directory
+        owner: root
+        mode: '0744'
+    - name: copy facts file to facts.d
+      copy:
+        src: /etc/ansible/facts.d/date.fact
+        dest: /etc/ansible/facts.d/date.fact
+        mode: preserve
+#    - name: Refresh facts
+#      setup:
+    - name: display custom facts
+      debug: 
+        msg: "{{ ansible_local.date.date }}"
     - name: remove facts.d directory
       file:
         path: /etc/ansible/facts.d
         state: absent
     - name: Refresh facts
       setup:
+    - name: display custom facts
+      debug: 
+        msg: "{{ ansible_local }}"
