@@ -1,0 +1,14 @@
+---
+- hosts: ubuntu,centos
+  gather_facts: true
+  become: yes
+  vars:
+    package1: ntp
+  tasks:
+  - name: Install {{ package1 }}
+    package: 
+      pkg: "{{ package1 }}"
+      state: absent
+    
+
+...

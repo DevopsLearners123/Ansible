@@ -1,0 +1,22 @@
+---
+- hosts: centos
+  become: true
+  gather_facts: true
+  vars_files: 
+  - external_vars.yaml
+  vars_prompt:
+  - name: Name
+    prompt: Whats your name ?
+    private: no
+    default: Admin
+  - name: ID
+    prompt: Whats your ID ?
+    private: no
+    default: 11brsb5002
+  tasks:
+  - name:  Print Age & ID
+    debug: 
+      msg:  Age is {{ MSc.students.age }} & ID is {{ ID }}
+
+
+...
