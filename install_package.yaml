@@ -8,7 +8,7 @@
   - name: Install {{ package1 }}
     package: 
       pkg: "{{ package1 }}"
-      state: absent
+      state: present
     
 
 ...

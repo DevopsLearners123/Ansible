@@ -1,0 +1,18 @@
+---
+- hosts: centos,ubuntu
+  become: true
+  gather_facts: true
+  tasks:
+  - name: Update sshd config filr
+    shell: | 
+      echo " # ansible test" >> /etc/ssh/sshd_config
+    notify: 
+    - restart service
+  handlers: 
+  - name: restart service
+    service: 
+      name: sshd
+      state: restarted
+
+...
+
