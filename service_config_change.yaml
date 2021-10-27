@@ -8,11 +8,27 @@
       echo " # ansible test" >> /etc/ssh/sshd_config
     notify: 
     - restart service
+    - display var output
+    - display op2
+
   handlers: 
   - name: restart service
     service: 
       name: sshd
       state: restarted
+    register: handle1
 
+  - name: display var output  
+#    debug:
+#      var: handle1
+    debug:
+      msg: "{{ handle1.status}}"
+    when: ( ansible_distribution == "CentOS" and ansible_distribution_version | int >= 8 ) or
+          ( ansible_distribution == "Ubuntu" and ansible_distribution_major_version | int >= 21 )
+    register: op2
+  - name: display op2
+    debug: 
+      var: op2
+    when: op2 is skipped and op2 is changed
 ...
 

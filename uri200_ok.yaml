@@ -1,0 +1,14 @@
+---
+- hosts: centos,ubuntu
+  gather_facts: true
+  tasks:
+  - name: Get 200 response from google.com
+    uri:
+      url: http://www.google.com
+    register: gogle
+  - name: print logs
+    debug:
+      msg: "{{ gogle.status }}"
+    # when: gogle.status == "200"
+
+...
