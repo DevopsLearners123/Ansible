@@ -1,0 +1,21 @@
+---
+- hosts: ubuntu,centos
+  gather_facts: true
+  tasks:
+  - name: copy to /tmp/motdd file
+    copy:
+      content: hello {{ item }}
+      dest: /tmp/motdd
+    with_items:
+      - CentOS
+      - Ubuntu
+    when: ansible_distribution == item
+ 
+  - name: Display content of  host
+    shell: | 
+      cat /tmp/motdd
+    register: op
+  - debug:
+      var: op.stdout
+    
+...
