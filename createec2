@@ -1,0 +1,22 @@
+---
+ - name: playbook for launching ec2 instance
+   hosts: localhost
+   connection: local
+   #become: yes
+   #become_user: root
+   gather_facts: true
+   tasks:
+     - name: Ansible module for launching ec2 instance
+       ec2:
+         instance_type: t3.micro
+         image: ami-0d299c73ef01b827d
+         region: ap-south-1
+         aws_access_key: AKIA57A72JBR47CYJZO3
+         aws_secret_key: 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
+         group: default
+         count: 1
+         vpc_subnet_id: "subnet-17cc776c"
+         keypair: ec2-imss
+         wait: yes
+         assign_public_ip: yes
+       register: ec2
